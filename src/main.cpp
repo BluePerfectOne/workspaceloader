@@ -31,6 +31,7 @@ constexpr int kListId = 1001;
 constexpr int kOpenButtonId = 1002;
 constexpr int kQuitButtonId = 1003;
 constexpr int kRefreshButtonId = 1004;
+constexpr int kTopmostCheckId = 1005;
 
 std::vector<ProjectResolved> g_projects;
 
@@ -214,6 +215,18 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
                       nullptr,
                       nullptr);
 
+        CreateWindowW(L"BUTTON",
+                      L"Keep window on top",
+                      WS_CHILD | WS_VISIBLE | BS_AUTOCHECKBOX,
+                      120,
+                      236,
+                      180,
+                      30,
+                      hwnd,
+                      reinterpret_cast<HMENU>(static_cast<INT_PTR>(kTopmostCheckId)),
+                      nullptr,
+                      nullptr);
+
         PopulateProjects(hwnd);
         return 0;
     }
@@ -234,6 +247,15 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 
         if (controlId == kRefreshButtonId) {
             PopulateProjects(hwnd);
+            return 0;
+        }
+
+        if (controlId == kTopmostCheckId && notifyCode == BN_CLICKED) {
+            HWND check = GetDlgItem(hwnd, kTopmostCheckId);
+            LRESULT checked = SendMessageW(check, BM_GETCHECK, 0, 0);
+            SetWindowPos(hwnd, checked == BST_CHECKED ? HWND_TOPMOST : HWND_NOTOPMOST,
+                         0, 0, 0, 0,
+                         SWP_NOMOVE | SWP_NOSIZE);
             return 0;
         }
 
