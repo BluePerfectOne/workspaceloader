@@ -21,7 +21,7 @@ add_custom_command(
 add_custom_command(
     TARGET ProjectOpener
     POST_BUILD
-    COMMAND powershell -ExecutionPolicy Bypass -Command "Start-Process -NoNewWindow -FilePath \"$<TARGET_FILE:ProjectOpener>\" -WorkingDirectory \"${CMAKE_SOURCE_DIR}\""
+    COMMAND powershell -ExecutionPolicy Bypass -Command "Start-Process -FilePath \"$<TARGET_FILE:ProjectOpener>\" -WorkingDirectory \"${CMAKE_SOURCE_DIR}\""
     COMMENT "Launching ProjectOpener.exe after build with correct working directory"
 )
 
