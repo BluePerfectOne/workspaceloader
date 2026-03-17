@@ -81,3 +81,12 @@ Run:
 - Added the refresh button for loading updated json list - no need to restart the app
 - Replace raw Win32 UI with a framework later (Qt, wxWidgets, WinUI) after understanding this baseline. - replaced Win32 API with Qt
 - Solved the Qt topmost flickering replacing that part with Win32 API functionality
+
+## Acknowledgements
+
+This project uses the following third-party libraries:
+
+- [Qt](https://www.qt.io/) — Copyright The Qt Company. Licensed under LGPL/GPL/commercial licenses.
+- [nlohmann/json](https://github.com/nlohmann/json) — Copyright Niels Lohmann. Licensed under MIT License.
+
+Please refer to their official documentation and license files for more information.
