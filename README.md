@@ -4,6 +4,8 @@
 
 When working with multiple projects across different programming languages and environments, keeping track of all the directories becomes increasingly difficult. While you could document project locations somewhere, it is easy to lose track or forget where things are. ProjectOpener solves this by providing a simple, always-on-top window that lists your projects and lets you quickly open or switch workspaces in VS Code. This tool keeps your project list accessible and visible, so you never have to hunt for directories or remember paths. It streamlines your workflow by making workspace switching effortless and always available.
 
+![App Screenshot](images/MainUI.png)
+
 ## What this does
 
 - Shows a simple dialog-like window with a selectable project list.
