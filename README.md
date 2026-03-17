@@ -46,7 +46,9 @@ Each entry in the list should have a `name` (displayed in the UI) and a `path` (
 - `path`: The absolute or network path to the project directory.
 
 
-## Build (Visual Studio 2026 Community)
+## Build 
+
+### Visual Studio 2026 Community
 
 Visual Studio 2026 Community Edition is free for individual developers, students, and open-source projects.
 
@@ -68,3 +70,11 @@ Run:
 - Add a status area showing whether each path exists.
 - Add keyboard shortcuts (Enter to open, Esc to quit).
 - Replace raw Win32 UI with a framework later (Qt, wxWidgets, WinUI) after understanding this baseline.
+- Profile support — add an optional "profile" key to each JSON entry and pass --profile to the code command if it's present
+- Last opened highlight — remember which project was opened last and visually mark it, useful when switching machines
+- Tray icon instead of floating window — if the window starts feeling intrusive, a system tray icon with a right-click menu is the next natural evolution and keeps the desktop clean
+
+## Implemented features
+
+- Added the stay on top radio button along with the stay on top functionality
+- Added the refresh button for loading updated json list - no need to restart the app
