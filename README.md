@@ -87,13 +87,6 @@ The main window title shows the current application version so the running binar
 - Last opened highlight — remember which project was opened last and visually mark it, useful when switching machines
 - Tray icon instead of floating window — if the window starts feeling intrusive, a system tray icon with a right-click menu is the next natural evolution and keeps the desktop clean
 
-## Implemented features / fixed issues
-
-- Added the stay on top radio button along with the stay on top functionality
-- Added the refresh button for loading updated json list - no need to restart the app
-- Replace raw Win32 UI with a framework later (Qt, wxWidgets, WinUI) after understanding this baseline. - replaced Win32 API with Qt
-- Solved the Qt topmost flickering replacing that part with Win32 API functionality
-
 ## Acknowledgements
 
 This project uses the following third-party libraries:

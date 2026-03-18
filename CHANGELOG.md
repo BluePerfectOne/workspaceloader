@@ -40,3 +40,5 @@ All notable changes to this project are listed in this file.
 - Open selected workspace or folder in VS Code.
 - Refresh project list without restarting the app.
 - Keep window on top toggle.
+- Replace raw Win32 UI with a framework later (Qt, wxWidgets, WinUI) after understanding this baseline. - replaced Win32 API with Qt
+- Solved the Qt topmost flickering replacing that part with Win32 API functionality
