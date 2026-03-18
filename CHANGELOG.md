@@ -13,6 +13,8 @@ All notable changes to this project should be listed in this file.
 ### Changed in 0.4.0
 
 - Bump the application version to `0.4.0`.
+- Document VS Code/CMake development environment setup and troubleshooting steps in `README.md`.
+- Document a clean command-line rehearsal workflow (`build-rehearsal`) with exact configure/build commands.
 
 ## [0.3.0] - 2026-03-19
 

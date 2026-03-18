@@ -4,5 +4,13 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"cmake.generator": "Visual Studio 18 2026",
+		"cmake.buildDirectory": "${workspaceFolder}/build",
+		"cmake.configureSettings": {
+			"CMAKE_PREFIX_PATH": "E:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6",
+			"CMAKE_MT": "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/mt.exe",
+			"CMAKE_RC_COMPILER": "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/rc.exe"
+		}
+	}
 }

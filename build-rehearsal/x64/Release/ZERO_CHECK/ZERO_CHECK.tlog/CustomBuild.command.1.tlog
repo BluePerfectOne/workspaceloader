@@ -1,0 +1,10 @@
+^E:\PROJECTS\WINDOWS\PROJECTOPENER\BUILD-REHEARSAL\CMAKEFILES\B0AF962AD8BF938758B71ACEBFD8EDE9\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SE:/Projects/Windows/ProjectOpener -BE:/Projects/Windows/ProjectOpener/build-rehearsal --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/Projects/Windows/ProjectOpener/build-rehearsal/ProjectOpener.slnx
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
