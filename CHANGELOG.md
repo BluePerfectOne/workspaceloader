@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to this project should be listed in this file.
+All notable changes to this project are listed in this file.
 
 ## [0.4.0] - 2026-03-19
 
@@ -12,8 +12,7 @@ All notable changes to this project should be listed in this file.
 
 ### Changed in 0.4.0
 
-- Bump the application version to `0.4.0`.
-- Document VS Code/CMake development environment setup and troubleshooting steps in `README.md`.
+- Move VS Code/CMake development environment setup and troubleshooting into `doc/docs/development-environment.md` and keep `README.md` concise.
 - Document a clean command-line rehearsal workflow (`build-rehearsal`) with exact configure/build commands.
 
 ## [0.3.0] - 2026-03-19
@@ -22,10 +21,6 @@ All notable changes to this project should be listed in this file.
 
 - Add an `About` dialog showing the current application version.
 - Add an `Open Changelog` action from the `About` dialog.
-
-### Changed in 0.3.0
-
-- Bump the application version to `0.3.0`.
 
 ## [0.2.0] - 2026-03-19
 
