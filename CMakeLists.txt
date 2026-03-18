@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(ProjectOpener LANGUAGES CXX)
+project(ProjectOpener VERSION 0.4.0 LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -22,6 +22,7 @@ add_executable(ProjectOpener WIN32
 )
 
 target_include_directories(ProjectOpener PRIVATE src)
+target_compile_definitions(ProjectOpener PRIVATE PROJECT_OPENER_VERSION="${PROJECT_VERSION}")
 target_link_libraries(ProjectOpener PRIVATE Qt6::Widgets)
 
 add_custom_command(

@@ -6,12 +6,19 @@ When working with multiple projects across different programming languages and e
 
 ![App Screenshot](images/MainUI.png)
 
+## Version
+
+- Current version: `0.4.0`
+- Release notes: see [CHANGELOG.md](CHANGELOG.md)
+
 ## What this does
 
 - Shows a simple dialog-like window with a selectable project list.
 - For each project folder, searches only that folder (non-recursive) for the first `.code-workspace` file.
 - If found, opens that workspace in VS Code with `code --reuse-window`.
 - If not found, opens the folder path directly in VS Code.
+- Lets you open the selected project folder in File Explorer using the `Explorer` button or `Ctrl + double-click` on a list item.
+- Includes an `About` dialog that shows the current version, build timestamp, key file paths, and quick-open actions.
 
 ## Example: Project List JSON
 
@@ -47,8 +54,7 @@ Each entry in the list should have a `name` (displayed in the UI) and a `path` (
 - `name`: The label shown in the ProjectOpener window.
 - `path`: The absolute or network path to the project directory.
 
-
-## Building 
+## Building
 
 ### Visual Studio 2026 Community
 
@@ -66,6 +72,8 @@ Run:
 ```powershell
 .\build\Release\ProjectOpener.exe
 ```
+
+The main window title shows the current application version so the running binary can be matched against the documented changelog entry. The `About` button opens a dialog with the same version, build timestamp, direct access to [CHANGELOG.md](CHANGELOG.md), and a button to open the workspace folder.
 
 ## Future development / learning ideas
 

@@ -24,6 +24,8 @@ public:
 
 private slots:
     void openSelectedProject();
+    void openSelectedInExplorer();
+    void showAboutDialog();
     void refreshProjects();
     void quitApp();
     void handleTopmostCheck(int state);
@@ -33,10 +35,15 @@ private:
     void populateProjects();
     std::optional<std::string> findWorkspace(const std::string& dir);
     void launchTarget(const std::string& target);
+    void launchExplorer(const std::string& path);
+    void openChangelog();
+    void openWorkingDirectory();
     std::string fileNameOnly(const std::string& fullPath);
 
     QListWidget* listWidget;
+    QPushButton* aboutButton;
     QPushButton* openButton;
+    QPushButton* explorerButton;
     QPushButton* quitButton;
     QPushButton* refreshButton;
     QCheckBox* topmostCheck;
