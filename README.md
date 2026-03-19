@@ -86,6 +86,8 @@ The main window title shows the current application version so the running binar
 - Profile support — add an optional "profile" key to each JSON entry and pass --profile to the code command if it's present
 - Last opened highlight — remember which project was opened last and visually mark it, useful when switching machines
 - Tray icon instead of floating window — if the window starts feeling intrusive, a system tray icon with a right-click menu is the next natural evolution and keeps the desktop clean
+- Context menu options for opening
+- Multicolumn listbox instead of list to show data in a more easily readable form
 
 ## Acknowledgements
 
