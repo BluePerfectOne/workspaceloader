@@ -19,6 +19,14 @@
 #include <nlohmann/json.hpp>
 #include <filesystem>
 
+namespace {
+    const QColor COLOR_PATH_MISSING(0xb4, 0x32, 0x32);
+    const QColor COLOR_WORKSPACE_MISSING(0xa0, 0x78, 0x00);
+    const QString STYLE_PATH_MISSING   = QStringLiteral("color: #b43232;");
+    const QString STYLE_WORKSPACE_MISSING = QStringLiteral("color: #a07800;");
+    const QString STYLE_OK             = QStringLiteral("color: #1a7a1a;");
+}
+
 ProjectLauncherWidget::ProjectLauncherWidget(QWidget* parent)
     : QWidget(parent)
 {
@@ -31,6 +39,11 @@ ProjectLauncherWidget::ProjectLauncherWidget(QWidget* parent)
 
     listWidget = new QListWidget(this);
     mainLayout->addWidget(listWidget);
+
+    statusLabel = new QLabel(this);
+    statusLabel->setWordWrap(true);
+    statusLabel->setMinimumHeight(18);
+    mainLayout->addWidget(statusLabel);
 
     auto* buttonLayout = new QHBoxLayout();
     aboutButton = new QPushButton("About", this);
@@ -56,6 +69,7 @@ ProjectLauncherWidget::ProjectLauncherWidget(QWidget* parent)
     connect(refreshButton, &QPushButton::clicked, this, &ProjectLauncherWidget::refreshProjects);
     connect(topmostCheck, &QCheckBox::stateChanged, this, &ProjectLauncherWidget::handleTopmostCheck);
     connect(listWidget, &QListWidget::itemDoubleClicked, this, &ProjectLauncherWidget::handleListDoubleClick);
+    connect(listWidget, &QListWidget::currentRowChanged, this, &ProjectLauncherWidget::updateStatusLabel);
 
     populateProjects();
 }
@@ -76,15 +90,24 @@ void ProjectLauncherWidget::populateProjects() {
             Project p;
             p.name = item["name"].get<std::string>();
             p.path = item["path"].get<std::string>();
-            ProjectResolved resolved{p, findWorkspace(p.path)};
+            const bool pathExists = std::filesystem::exists(p.path) && std::filesystem::is_directory(p.path);
+            ProjectResolved resolved{p, findWorkspace(p.path), pathExists};
             std::string label = p.name;
             if (resolved.workspace.has_value()) {
                 label += "  [" + fileNameOnly(*resolved.workspace) + "]";
-            } else {
+            } else if (pathExists) {
                 label += "  [no workspace file found]";
+            } else {
+                label += "  [path not found]";
             }
-            listWidget->addItem(QString::fromStdString(label));
+            auto* listItem = new QListWidgetItem(QString::fromStdString(label));
+            if (!pathExists) {
+                listItem->setForeground(COLOR_PATH_MISSING);
+            } else if (!resolved.workspace.has_value()) {
+                listItem->setForeground(COLOR_WORKSPACE_MISSING);
+            }
             projects.push_back(std::move(resolved));
+            listWidget->addItem(listItem);
         }
         if (!projects.empty()) {
             listWidget->setCurrentRow(0);
@@ -186,6 +209,27 @@ void ProjectLauncherWidget::openSelectedInExplorer() {
 
 void ProjectLauncherWidget::refreshProjects() {
     populateProjects();
+}
+
+void ProjectLauncherWidget::updateStatusLabel(int row) {
+    if (row < 0 || row >= static_cast<int>(projects.size())) {
+        statusLabel->clear();
+        return;
+    }
+    const auto& p = projects[row];
+    if (!p.pathExists) {
+        statusLabel->setText(QString("Path not found: %1")
+                                 .arg(QString::fromStdString(p.project.path)));
+        statusLabel->setStyleSheet(STYLE_PATH_MISSING);
+    } else if (!p.workspace.has_value()) {
+        statusLabel->setText(QString("No .code-workspace file in: %1")
+                                 .arg(QString::fromStdString(p.project.path)));
+        statusLabel->setStyleSheet(STYLE_WORKSPACE_MISSING);
+    } else {
+        statusLabel->setText(QString("Workspace: %1")
+                                 .arg(QString::fromStdString(*p.workspace)));
+        statusLabel->setStyleSheet(STYLE_OK);
+    }
 }
 
 void ProjectLauncherWidget::showAboutDialog() {

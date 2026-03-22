@@ -1,6 +1,7 @@
 #pragma once
 #include <QWidget>
 #include <QListWidget>
+#include <QLabel>
 #include <QPushButton>
 #include <QCheckBox>
 #include <vector>
@@ -15,6 +16,7 @@ struct Project {
 struct ProjectResolved {
     Project project;
     std::optional<std::string> workspace;
+    bool pathExists = false;
 };
 
 class ProjectLauncherWidget : public QWidget {
@@ -30,6 +32,7 @@ private slots:
     void quitApp();
     void handleTopmostCheck(int state);
     void handleListDoubleClick(QListWidgetItem* item);
+    void updateStatusLabel(int row);
 
 private:
     void populateProjects();
@@ -41,6 +44,7 @@ private:
     std::string fileNameOnly(const std::string& fullPath);
 
     QListWidget* listWidget;
+    QLabel* statusLabel;
     QPushButton* aboutButton;
     QPushButton* openButton;
     QPushButton* explorerButton;
